@@ -1,4 +1,3 @@
- @truncate-log-file @enable-behat-step-log-listener
 Feature: Behat steps logger
   In order to understand what happens behind the scene
   As dev
@@ -12,7 +11,7 @@ Feature: Behat steps logger
   Scenario: Assert custom configuration
       Given extension step_logger config "enabled" is true
 
-    @custom-config
+    @custom-config @truncate-log-file @enable-behat-step-log-listener
   Scenario Outline: check logs entries
     Given A log entry must exist for current example start event
     Then I truncate log file

@@ -26,8 +26,6 @@ build:
         postgresql: false
         elasticsearch: false
         redis: false
-        variables:
-            SYMFONY_ENV: 'test'
     tests:
         override:
             -
