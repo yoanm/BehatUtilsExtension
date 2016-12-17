@@ -30,6 +30,10 @@ class StepLoggerConfiguration
             ->treatTrueLike(array('enabled' => true))
             ->children()
                 ->booleanNode('enabled')
+                    ->beforeNormalization()
+                        ->always()
+                        ->then($castToBool)
+                    ->end()
                     ->defaultFalse()
         ;
 
