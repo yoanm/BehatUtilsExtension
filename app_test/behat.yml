@@ -1,0 +1,39 @@
+default:
+  suites:
+    default:
+      filters:
+        tags: "@nothing"
+      contexts:
+        - ExtensionContext:
+            extensionConfig:
+              logger:
+                path: %behat_utils_extension.logger.path%
+                level: %behat_utils_extension.logger.level%
+              step_logger:
+                enabled: %behat_utils_extension.step_logger.enabled%
+        - LoggerContext:
+          - %paths.base%/%behat_utils_extension.logger.path%
+        - BehatEventsContext: ~
+        - BehatStepLoggerContext:
+          - %paths.base%/%behat_utils_extension.logger.path%
+  extensions:
+    Yoanm\BehatUtilsExtension: ~
+
+default-config:
+  suites:
+    default:
+      filters:
+        tags: "@default-config"
+
+custom-config:
+  suites:
+    default:
+      filters:
+        tags: "@custom-config"
+  extensions:
+    Yoanm\BehatUtilsExtension:
+      logger:
+        path: behat2.log
+        level: DEBUG
+      step_logger: true
+
