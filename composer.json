@@ -27,8 +27,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "UnitTests\\": "tests/unit/",
-            "FunctionalTests\\": "tests/functional/"
+            "UnitTest\\": "tests/unit/",
+            "FunctionalTest\\": "tests/functional/"
         }
     },
     "scripts": {
@@ -38,26 +38,20 @@
       ],
       "test-f": [
         "cd app_test && ../vendor/bin/behat --no-snippets --strict --colors --format progress --profile default-config",
-        "cd app_test && ../vendor/bin/behat --no-snippets --strict --colors --format progress --profile custom-config"
+        "cd app_test && ../vendor/bin/behat --no-snippets --strict --colors --format progress --profile custom-config",
+        "./vendor/bin/phpunit --colors=auto --testsuite unit"
       ],
       "test-u": [
-        "./vendor/bin/phpunit --colors=auto -c phpunit.ut.xml",
-        "./vendor/bin/phpunit --colors=auto -c phpunit.ft.xml"
+        "./vendor/bin/phpunit --colors=auto --testsuite unit"
       ],
       "cs": [
         "./vendor/bin/phpcs"
       ],
-      "coverage": [
-        "@coverage-base",
-        "phpcov merge --html coverage coverage"
-      ],
       "coverage-clover": [
-        "@coverage-base",
-        "phpcov merge --clover coverage/clover.xml coverage"
+        "./vendor/bin/phpunit --coverage-clover coverage/clover.xml"
       ],
-      "coverage-base": [
-        "./vendor/bin/phpunit --colors=auto -c phpunit.ut.xml --coverage-php coverage/unit.cov",
-        "./vendor/bin/phpunit --colors=auto -c phpunit.ft.xml --coverage-php coverage/functional.cov"
+      "coverage": [
+        "./vendor/bin/phpunit --coverage-html coverage"
       ]
     }
 }

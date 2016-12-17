@@ -51,4 +51,17 @@ class BehatContextSubscriberInitializerTest extends \PHPUnit_Framework_TestCase
 
         $this->initializer->initializeContext($context->reveal());
     }
+
+    public function testClearBehatContextSubscriber()
+    {
+        /** @var BehatContextSubscriberInterface|ObjectProphecy $context */
+        $context = $this->prophesize(BehatContextSubscriberInterface::class);
+
+        $this->initializer->initializeContext($context->reveal());
+
+        $this->behatEventDispatcher->removeSubscriber($context->reveal())
+            ->shouldBeCalled();
+
+        $this->initializer->clearBehatContextSubscriber();
+    }
 }
