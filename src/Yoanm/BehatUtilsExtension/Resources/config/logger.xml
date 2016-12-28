@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="behat_utils_extension.logger.handler" class="Monolog\Handler\StreamHandler">
+            <argument>%behat_utils_extension.logger.path%</argument>
+            <argument>%behat_utils_extension.logger.level%</argument>
+        </service>
+
+        <service id="behat_utils_extension.logger" class="Monolog\Logger">
+            <argument>behatUtils</argument>
+            <argument type="collection">
+                <argument type="service" id="behat_utils_extension.logger.handler"/>
+            </argument>
+            <argument type="collection">
+                <argument type="service" id="behat_utils_extension.logger.processor.class_header"/>
+            </argument>
+        </service>
+
+        <service
+                id="behat_utils_extension.logger.processor.class_header"
+                class="Yoanm\BehatUtilsExtension\Logger\Processor\ClassHeaderProcessor"
+        />
+    </services>
+</container>
