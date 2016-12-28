@@ -1,9 +1,10 @@
 {
-  "name":         "yoanm/behat-utils-extension",
+  "name": "yoanm/behat-utils-extension",
   "description":  "A set of utility for Behat3",
-  "keywords":     ["Behat3", "Utils", "Debug", "Logger"],
-  "type":         "library",
-  "authors":      [
+  "keywords": ["Behat3", "Utils", "Debug", "Logger"],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
     {
       "name": "yoanm",
       "email": "yoanm@users.noreply.github.com"
