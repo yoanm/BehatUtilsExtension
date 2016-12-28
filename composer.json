@@ -1,0 +1,55 @@
+{
+  "name":         "yoanm/behat-utils-extension",
+  "description":  "A set of utility for Behat3",
+  "keywords":     ["Behat3", "Utils", "Debug", "Logger"],
+  "type":         "library",
+  "authors":      [
+    {
+      "name": "yoanm",
+      "email": "yoanm@users.noreply.github.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5",
+    "behat/behat": "~3.0",
+    "monolog/monolog": "~1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0",
+    "squizlabs/php_codesniffer": "2.*",
+    "matthiasnoback/symfony-dependency-injection-test": "1.*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Yoanm\\BehatUtilsExtension": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Technical\\": "tests/Technical",
+      "Functional\\": "tests/Functional"
+    }
+  },
+  "scripts": {
+    "test": [
+      "@t-test",
+      "@f-test"
+    ],
+    "f-test": [
+      "./vendor/bin/phpunit --colors=auto --testsuite functional",
+      "cd app_test && ../vendor/bin/behat --no-snippets --strict --colors --format progress"
+    ],
+    "t-test": [
+      "./vendor/bin/phpunit --colors=auto --testsuite technical"
+    ],
+    "cs": [
+      "./vendor/bin/phpcs"
+    ],
+    "coverage-clover": [
+      "./vendor/bin/phpunit --coverage-clover coverage/clover.xml"
+    ],
+    "coverage": [
+      "./vendor/bin/phpunit --coverage-html coverage"
+    ]
+  }
+}

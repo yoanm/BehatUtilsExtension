@@ -1,0 +1,4 @@
+vendor
+composer.lock
+coverage
+app_test/behat.log
