@@ -92,7 +92,7 @@ class BehatStepLoggerSubscriberTest extends \PHPUnit_Framework_TestCase
             'FeatureTested::BEFORE' => [
                 'event' => new BeforeFeatureTested(
                     new StaticEnvironment(new GenericSuite('suite', [])),
-                    new FeatureNode('title', 'description', [], null, [], 'keyword', 'language',' file', 'line')
+                    new FeatureNode('title', 'description', [], null, [], 'keyword', 'language', ' file', 'line')
                 ),
                 'expectedMEssage' => sprintf(
                     '[%]'
