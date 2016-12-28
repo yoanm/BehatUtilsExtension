@@ -20,11 +20,11 @@
          bootstrap="vendor/autoload.php"
 >
     <testsuites>
-        <testsuite name="Technical tests suite">
+        <testsuite name="technical">
             <directory>tests/Technical/Unit/*</directory> <!-- launch unit before => faster than integration -->
             <directory>tests/Technical/Integration/*</directory>
         </testsuite>
-        <testsuite name="Functional tests suite"> <!-- defined functional after technical => longer than technical -->
+        <testsuite name="functional"> <!-- defined functional after technical => longer than technical -->
             <directory>tests/Functional/*</directory>
         </testsuite>
     </testsuites>

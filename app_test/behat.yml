@@ -16,5 +16,7 @@ default:
           - %paths.base%/%behat_utils_extension.logger.path%
   extensions:
     Yoanm\BehatUtilsExtension:
+        logger:
+            level: DEBUG
         step_logger: true
 

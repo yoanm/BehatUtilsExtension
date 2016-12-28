@@ -71,7 +71,6 @@ class BehatStepLoggerSubscriber implements EventSubscriberInterface
     public function logEvent(GherkinNodeTested $event)
     {
         list($header, $context) = $this->processNodeEvent($event);
-
         $this->logger->debug($header, $context);
     }
 

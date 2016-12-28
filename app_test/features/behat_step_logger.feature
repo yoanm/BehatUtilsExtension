@@ -3,13 +3,6 @@ Feature: Behat steps logger
   As dev
   I need to have log entries for each example/scenarios/steps executed
 
-    @default-config
-  Scenario: Assert default configuration
-    Given extension step_logger config "enabled" is false
-
-  Scenario: Assert custom configuration
-    Given extension step_logger config "enabled" is true
-
     @truncate-log-file @enable-behat-step-log-listener
   Scenario Outline: check logs entries
     Given A log entry must exist for current example start event

@@ -32,14 +32,14 @@
     },
     "scripts": {
       "test": [
-        "@technical-test",
-        "@functional-test"
+        "@t-test",
+        "@f-test"
       ],
-      "functional-test": [
+      "f-test": [
         "./vendor/bin/phpunit --colors=auto --testsuite functional",
         "cd app_test && ../vendor/bin/behat --no-snippets --strict --colors --format progress"
       ],
-      "technical-test": [
+      "t-test": [
         "./vendor/bin/phpunit --colors=auto --testsuite technical"
       ],
       "cs": [

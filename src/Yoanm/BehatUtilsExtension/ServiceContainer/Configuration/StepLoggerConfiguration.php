@@ -11,16 +11,6 @@ class StepLoggerConfiguration implements ConfigurationInterface
      */
     public function getConfigNode()
     {
-        $castToBool = function ($value) {
-            $filtered = filter_var(
-                $value,
-                FILTER_VALIDATE_BOOLEAN,
-                FILTER_NULL_ON_FAILURE
-            );
-
-            return (null === $filtered) ? (bool) $value : $filtered;
-        };
-
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('step_logger');
         $rootNode
@@ -30,10 +20,6 @@ class StepLoggerConfiguration implements ConfigurationInterface
             ->treatTrueLike(array('enabled' => true))
             ->children()
                 ->booleanNode('enabled')
-                    ->beforeNormalization()
-                        ->always()
-                        ->then($castToBool)
-                    ->end()
                     ->defaultFalse()
         ;
 

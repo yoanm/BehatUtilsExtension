@@ -23,12 +23,14 @@ class BehatUtilsExtension implements Extension
         return self::EXTENSION_CONFIG_KEY;
     }
 
+    // @codeCoverageIgnoreStart
     /**
      * {@inheritdoc}
      */
     public function initialize(ExtensionManager $extensionManager)
     {
     }
+    // @codeCoverageIgnoreEnd
 
     /**
      * {@inheritdoc}
