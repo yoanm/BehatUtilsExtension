@@ -33,7 +33,8 @@ class ClassHeaderProcessor
         $classIndex = 2;
         foreach ($trace as $index => $traceData) {
             if (true === $loggerFound) {
-                if (!isset($traceData['class']) || Logger::class !== $traceData['class']) {
+                // If Logger hash been found and current class it not Logger (in case of internal calls)
+                if (Logger::class !== $traceData['class']) {
                     $classIndex = $index;
                     break;
                 }
