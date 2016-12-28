@@ -4,12 +4,12 @@ namespace Yoanm\BehatUtilsExtension\ServiceContainer\Configuration;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
-class StepLoggerConfiguration
+class StepLoggerConfiguration implements ConfigurationInterface
 {
     /**
      * @return NodeDefinition
      */
-    public function getConfigTreeBuilder()
+    public function getConfigNode()
     {
         $castToBool = function ($value) {
             $filtered = filter_var(

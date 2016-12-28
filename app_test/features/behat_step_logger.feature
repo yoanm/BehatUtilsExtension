@@ -7,11 +7,10 @@ Feature: Behat steps logger
   Scenario: Assert default configuration
     Given extension step_logger config "enabled" is false
 
-    @custom-config
   Scenario: Assert custom configuration
-      Given extension step_logger config "enabled" is true
+    Given extension step_logger config "enabled" is true
 
-    @custom-config @truncate-log-file @enable-behat-step-log-listener
+    @truncate-log-file @enable-behat-step-log-listener
   Scenario Outline: check logs entries
     Given A log entry must exist for current example start event
     Then I truncate log file

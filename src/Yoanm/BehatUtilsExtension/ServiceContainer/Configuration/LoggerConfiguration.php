@@ -2,15 +2,14 @@
 namespace Yoanm\BehatUtilsExtension\ServiceContainer\Configuration;
 
 use Monolog\Logger;
-use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
-class LoggerConfiguration
+class LoggerConfiguration implements ConfigurationInterface
 {
     /**
-     * @return NodeDefinition
+     * {@inheritdoc}
      */
-    public function getConfigTreeBuilder()
+    public function getConfigNode()
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('logger');

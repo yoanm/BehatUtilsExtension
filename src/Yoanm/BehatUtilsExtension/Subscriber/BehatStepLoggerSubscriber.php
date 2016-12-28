@@ -165,9 +165,9 @@ class BehatStepLoggerSubscriber implements EventSubscriberInterface
         $node = $event->getNode();
         $line = $node->getLine();
 
-        if ($event instanceof AfterTested
+        if ($node instanceof StepContainerInterface
+            && $event instanceof AfterTested
             && !$event instanceof StepTested /* no need to process step event end line */
-            && $node instanceof StepContainerInterface
         ) {
             // in case of end event, try to find the last line of the node
 

@@ -12,12 +12,15 @@ use Yoanm\BehatUtilsExtension\ServiceContainer\Configuration\StepLoggerConfigura
 
 class BehatUtilsExtension implements Extension
 {
+    const EXTENSION_CONFIG_KEY = 'behat_utils';
+    const CONTAINER_KEY_BASE = 'behat_utils_extension';
+
     /**
      * {@inheritdoc}
      */
     public function getConfigKey()
     {
-        return 'behat_utils';
+        return self::EXTENSION_CONFIG_KEY;
     }
 
     /**
@@ -32,12 +35,8 @@ class BehatUtilsExtension implements Extension
      */
     public function configure(ArrayNodeDefinition $builder)
     {
-        $builder->append(
-            (new LoggerConfiguration())->getConfigTreeBuilder()
-        );
-        $builder->append(
-            (new StepLoggerConfiguration())->getConfigTreeBuilder()
-        );
+        $builder->append((new LoggerConfiguration())->getConfigNode());
+        $builder->append((new StepLoggerConfiguration())->getConfigNode());
     }
 
     /**
@@ -75,7 +74,7 @@ class BehatUtilsExtension implements Extension
     protected function bindConfigToContainer(
         ContainerBuilder $container,
         array $config,
-        $baseId = 'behat_utils_extension'
+        $baseId = self::CONTAINER_KEY_BASE
     ) {
         foreach ($config as $configKey => $configValue) {
             if (is_array($configValue)) {

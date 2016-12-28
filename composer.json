@@ -16,7 +16,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",
-        "squizlabs/php_codesniffer": "2.*"
+        "squizlabs/php_codesniffer": "2.*",
+        "matthiasnoback/symfony-dependency-injection-test": "1.*"
     },
     "autoload": {
         "psr-0": {
@@ -25,22 +26,21 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "UnitTest\\": "tests/unit/",
-            "FunctionalTest\\": "tests/functional/"
+            "Technical\\": "tests/Technical",
+            "Functional\\": "tests/Functional"
         }
     },
     "scripts": {
       "test": [
-        "@test-u",
-        "@test-f"
+        "@technical-test",
+        "@functional-test"
       ],
-      "test-f": [
-        "cd app_test && ../vendor/bin/behat --no-snippets --strict --colors --format progress --profile default-config",
-        "cd app_test && ../vendor/bin/behat --no-snippets --strict --colors --format progress --profile custom-config",
-        "./vendor/bin/phpunit --colors=auto --testsuite unit"
+      "functional-test": [
+        "./vendor/bin/phpunit --colors=auto --testsuite functional",
+        "cd app_test && ../vendor/bin/behat --no-snippets --strict --colors --format progress"
       ],
-      "test-u": [
-        "./vendor/bin/phpunit --colors=auto --testsuite unit"
+      "technical-test": [
+        "./vendor/bin/phpunit --colors=auto --testsuite technical"
       ],
       "cs": [
         "./vendor/bin/phpcs"

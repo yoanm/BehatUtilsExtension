@@ -1,5 +1,5 @@
 <?php
-namespace UnitTest\Yoanm\BehatUtilsExtension\Context\Initializer;
+namespace Technical\Unit\Yoanm\BehatUtilsExtension\Context\Initializer;
 
 use Behat\Behat\Context\Context;
 use Monolog\Logger;

@@ -1,4 +1,4 @@
- @default-config @enable-behat-step-event-listener
+ @enable-behat-step-event-listener
 Feature: Behat steps events
   In order to understand what happens behind the scene
   As dev
