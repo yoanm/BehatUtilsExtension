@@ -12,6 +12,9 @@
       "role": "Developer"
     }
   ],
+  "suggest": {
+    "yoanm/behat3-symfony-extension": "Symfony integration for behat v3.0"
+  },
   "support": {
     "issues": "https://github.com/yoanm/BehatUtilsExtension/issues"
   },
