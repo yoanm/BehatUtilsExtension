@@ -44,22 +44,6 @@
     "build": [
       "@composer install --prefer-dist --optimize-autoloader --ansi --verbose --no-suggest --no-interaction"
     ],
-    "ci-build": [
-      "mkdir -p build/coverage",
-      "@composer install --prefer-dist --ansi --verbose --no-suggest --no-interaction"
-    ],
-    "travis-build": [
-      "@build-ci"
-    ],
-    "scrutinizer-build": [
-
-      "@build-ci"
-    ],
-    "ci": [
-      "@ci-build",
-      "@cs",
-      "@test"
-    ],
     "test": [
       "@t-test",
       "@f-test"
@@ -76,6 +60,15 @@
     ],
     "coverage": [
       "./vendor/bin/phpunit --coverage-html coverage"
+    ],
+    "ci": [
+      "@ci-build",
+      "@cs",
+      "@test"
+    ],
+    "ci-build": [
+      "mkdir -p build/coverage",
+      "@composer install --prefer-dist --ansi --verbose --no-suggest --no-interaction"
     ],
     "coverage-clover": [
       "./vendor/bin/phpunit --coverage-clover build/coverage/clover.xml"
