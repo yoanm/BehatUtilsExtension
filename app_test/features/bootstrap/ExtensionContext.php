@@ -1,4 +1,5 @@
 <?php
+namespace FunctionalTest\Context;
 
 use Behat\Behat\Context\Context;
 
