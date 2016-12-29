@@ -21,7 +21,7 @@ BehatUtilsExtension provide a set of utility for Behat 3.0+
 ## How to use
 ### Installation
 ```bash
-> composer require --dev yoanm/behat-utils-extension
+composer require --dev yoanm/behat-utils-extension
 ```
 
 BehatUtilsExtension require [behat/behat](https://github.com/Behat/Behat) and [monolog/monolog](https://github.com/Seldaek/monolog)
