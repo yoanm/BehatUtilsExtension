@@ -27,7 +27,7 @@
     "psr-4": {
       "Technical\\": "tests/Technical",
       "Functional\\": "tests/Functional",
-      "FunctionalTest\\BehatUtilsExtension\\Context\\": "features/bootstrap/"
+      "FunctionalTest\\Yoanm\\BehatUtilsExtension\\Context\\": "features/bootstrap/"
     }
   },
   "require": {
