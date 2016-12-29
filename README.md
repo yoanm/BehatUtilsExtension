@@ -41,6 +41,7 @@ default:
 See [`LoggerAwareInterface`](src/Yoanm/BehatUtilsExtension/Context/LoggerAwareInterface.php)
 
 Implements this interface and your context will have a logger injected
+
 #### Example
 ```php
 <?php
