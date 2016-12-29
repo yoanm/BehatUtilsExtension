@@ -34,7 +34,7 @@ build:
                 command: composer coverage-clover
                 idle_timeout: 1200
                 coverage:
-                    file: 'build-coverage/clover.xml'
+                    file: 'build/coverage/clover.xml'
                     format: 'php-clover'
 
 tools:
