@@ -11,7 +11,7 @@ git clone git@github.com:your-username/BehatUtilsExtension.git
 composer ci
 ```
 
- * Make your changes (Add/Update tests according to your changes). 
+ * Make your changes (Add/Update tests according to your changes).
  * Make the tests pass:
 ```bash
 composer ci
@@ -24,7 +24,7 @@ composer coverage
 
  * Push to your fork and [submit a pull request](https://github.com/yoanm/BehatUtilsExtension/compare/).
  * Wait for feedback or merge.
- 
+
   Some stuff that will increase your pull request's acceptance:
     * Write tests.
     * Follow PSR-2 coding style.
