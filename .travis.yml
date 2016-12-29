@@ -11,10 +11,10 @@ matrix:
   fast_finish: true
 
 install:
-  - composer install
+  - composer ci-build
 
 script:
-  - composer run-script test
+  - composer test
 
 cache:
   files:
