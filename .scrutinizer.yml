@@ -19,7 +19,7 @@ build:
             - ~/.composer
     dependencies:
         override:
-            - composer install
+            - composer run scrutinizer-build
 
     environment:
         mysql: false
@@ -29,9 +29,9 @@ build:
     tests:
         override:
             -
-                command: composer run-script cs-checkstyle
+                command: composer run cs
             -
-                command: mkdir coverage && composer run-script coverage-clover
+                command: composer run coverage-clover
                 idle_timeout: 1200
                 coverage:
                     file: 'coverage/clover.xml'

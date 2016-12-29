@@ -160,6 +160,6 @@ default:
 ## Tests
 ```bash
 $ composer install
-$ composer run-script test
-$ composer run-script cs
+$ composer run test
+$ composer run cs
 ```
