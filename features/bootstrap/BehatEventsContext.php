@@ -1,5 +1,5 @@
 <?php
-namespace FunctionalTest\Context;
+namespace Functional\Yoanm\BehatUtilsExtension\Context;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\EventDispatcher\Event\AfterBackgroundTested;
