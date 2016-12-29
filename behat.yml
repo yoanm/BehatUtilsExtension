@@ -2,17 +2,17 @@ default:
   suites:
     default:
       contexts:
-        - ExtensionContext:
+        - Functional\Yoanm\BehatUtilsExtension\Context\ExtensionContext:
             extensionConfig:
               logger:
                 path: %behat_utils_extension.logger.path%
                 level: %behat_utils_extension.logger.level%
               step_logger:
                 enabled: %behat_utils_extension.step_logger.enabled%
-        - LoggerContext:
+        - Functional\Yoanm\BehatUtilsExtension\Context\LoggerContext:
           - %paths.base%/%behat_utils_extension.logger.path%
-        - BehatEventsContext: ~
-        - BehatStepLoggerContext:
+        - Functional\Yoanm\BehatUtilsExtension\Context\BehatEventsContext: ~
+        - Functional\Yoanm\BehatUtilsExtension\Context\BehatStepLoggerContext:
           - %paths.base%/%behat_utils_extension.logger.path%
   extensions:
     Yoanm\BehatUtilsExtension:

@@ -4,7 +4,7 @@
   "keywords": ["Behat3", "Utils", "Debug", "Logger"],
   "type": "library",
   "license": "MIT",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "authors": [
     {
       "name": "yoanm",
@@ -26,7 +26,8 @@
   "autoload-dev": {
     "psr-4": {
       "Technical\\": "tests/Technical",
-      "Functional\\": "tests/Functional"
+      "Functional\\": "tests/Functional",
+      "Functional\\Yoanm\\BehatUtilsExtension\\Context\\": "features/bootstrap"
     }
   },
   "require": {
@@ -46,7 +47,7 @@
     ],
     "f-test": [
       "./vendor/bin/phpunit --colors=auto --testsuite functional",
-      "cd app_test && ../vendor/bin/behat --no-snippets --strict --colors --format progress"
+      "./vendor/bin/behat --no-snippets --strict --colors --format progress"
     ],
     "t-test": [
       "./vendor/bin/phpunit --colors=auto --testsuite technical"

@@ -1,4 +1,5 @@
 <?php
+namespace Functional\Yoanm\BehatUtilsExtension\Context;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\FeatureScope;
@@ -73,7 +74,6 @@ class LoggerContext implements Context, LoggerAwareInterface
         if (null === $file) {
             // Tricks => clean log file before all features
             file_put_contents(__DIR__.'/../../behat.log', '');
-            file_put_contents(__DIR__.'/../../behat2.log', '');
 
             return;
         }
@@ -91,37 +91,6 @@ class LoggerContext implements Context, LoggerAwareInterface
         )) {
             self::truncateLogFile();
         }
-    }
-
-    /**
-     * @Then /^A log entry must exist for symfony app request to (?P<type>valid|exception) route$/
-     */
-    public function aLogEntryForRequestToRouteTypeMustExists($type)
-    {
-        $this->assertLogFileMatch(
-            sprintf(
-                '/^.*behatUtils\.INFO: \[SfKernelEventLogger\] \[REQUEST\].*%s.*$/m',
-                preg_quote(
-                    'exception' === $type
-                        ? MinkContext::EXCEPTION_TEST_ROUTE
-                        : MinkContext::VALID_TEST_ROUTE
-                    ,
-                    '/'
-                )
-            ),
-            'Symfony app request log entry not found !'
-        );
-    }
-
-    /**
-     * @Then A log entry must exist for symfony app exception
-     */
-    public function aLogEntryForExceptionEventMustExists()
-    {
-        $this->assertLogFileMatch(
-            '/^.*behatUtils\.ERROR: \[SfKernelEventLogger\] \[EXCEPTION_THROWN\].*my_exception.*$/m',
-            'Symfony app exception log entry not found !'
-        );
     }
 
     /**

@@ -3,7 +3,7 @@
 
 [![Travis Build Status](https://img.shields.io/travis/yoanm/BehatUtilsExtension.svg?label=travis)](https://travis-ci.org/yoanm/BehatUtilsExtension?label=Travis) [![PHP Versions](https://img.shields.io/badge/php-5.5%20%2F%205.6%20%2F%207.0-8892BF.svg)](https://php.net/)
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/yoanm/behat-utils-extension.svg)](https://packagist.org/packages/yoanm/BehatUtilsExtension)
+[![Latest Stable Version](https://img.shields.io/packagist/v/yoanm/behat-utils-extension.svg)](https://packagist.org/packages/yoanm/behat-utils-extension)
 
 
 A set of utility for Behat3
