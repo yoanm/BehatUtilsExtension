@@ -25,9 +25,10 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Technical\\": "tests/Technical",
-      "Functional\\": "tests/Functional",
-      "FunctionalTest\\Yoanm\\BehatUtilsExtension\\Context\\": "features/bootstrap/"
+      "Technical\\Integration\\Yoanm\\BehatUtilsExtension\\": "tests/Technical/Integration",
+      "Technical\\Unit\\Yoanm\\BehatUtilsExtension\\": "tests/Technical/Unit",
+      "Functional\\Yoanm\\BehatUtilsExtension\\": "tests/Functional",
+      "Functional\\Yoanm\\BehatUtilsExtension\\Context\\": "features/bootstrap"
     }
   },
   "require": {
