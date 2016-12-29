@@ -4,7 +4,7 @@
   "keywords": ["Behat3", "Utils", "Debug", "Logger"],
   "type": "library",
   "license": "MIT",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "authors": [
     {
       "name": "yoanm",
@@ -44,35 +44,34 @@
     "build": [
       "@composer install --prefer-dist --optimize-autoloader --ansi --verbose --no-suggest --no-interaction"
     ],
-    "ci-build": [
-      "@composer install --prefer-dist --ansi --verbose --no-suggest --no-interaction"
-    ],
-    "travis-build": [
-      "@build-ci"
-    ],
-    "scrutinizer-build": [
-      "mkdir coverage",
-      "@build-ci"
-    ],
     "test": [
       "@t-test",
       "@f-test"
     ],
     "f-test": [
-      "./vendor/bin/phpunit --colors=auto --testsuite functional",
+      "./vendor/bin/phpunit --testsuite functional",
       "./vendor/bin/behat --no-snippets --strict --colors --format progress"
     ],
     "t-test": [
-      "./vendor/bin/phpunit --colors=auto --testsuite technical"
+      "./vendor/bin/phpunit --testsuite technical"
     ],
     "cs": [
       "./vendor/bin/phpcs"
     ],
-    "coverage-clover": [
-      "./vendor/bin/phpunit --coverage-clover coverage/clover.xml"
-    ],
     "coverage": [
       "./vendor/bin/phpunit --coverage-html coverage"
+    ],
+    "ci": [
+      "@ci-build",
+      "@cs",
+      "@test"
+    ],
+    "ci-build": [
+      "mkdir -p build/coverage",
+      "@composer install --prefer-dist --ansi --verbose --no-suggest --no-interaction"
+    ],
+    "coverage-clover": [
+      "./vendor/bin/phpunit --coverage-clover build/coverage/clover.xml"
     ]
   }
 }

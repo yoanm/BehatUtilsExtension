@@ -11,10 +11,10 @@ matrix:
   fast_finish: true
 
 install:
-  - composer run travis-build
+  - composer ci-build
 
 script:
-  - composer run test
+  - composer test
 
 cache:
   files:
