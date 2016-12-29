@@ -27,7 +27,7 @@
     "psr-4": {
       "Technical\\": "tests/Technical",
       "Functional\\": "tests/Functional",
-      "FunctionalTest\\Context\\": "app_test/features/bootstrap/"
+      "FunctionalTest\\BehatUtilsExtension\\Context\\": "features/bootstrap/"
     }
   },
   "require": {
@@ -47,7 +47,7 @@
     ],
     "f-test": [
       "./vendor/bin/phpunit --colors=auto --testsuite functional",
-      "cd app_test && ../vendor/bin/behat --no-snippets --strict --colors --format progress"
+      "./vendor/bin/behat --no-snippets --strict --colors --format progress"
     ],
     "t-test": [
       "./vendor/bin/phpunit --colors=auto --testsuite technical"
