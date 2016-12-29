@@ -7,3 +7,12 @@
 
 
 A set of utility for Behat3
+
+# Logger
+See [`LoggerAwareInterface`](src/Yoanm/BehatUtilsExtension/Context/LoggerAwareInterface.php)
+
+# Behat event subscription
+See [`BehatContextSubscriberInterface`](src/Yoanm/BehatUtilsExtension/Context/BehatContextSubscriberInterface.php)
+
+# Step logger - debug mode
+See [`BehatStepLoggerSubscriber`](src/Yoanm/BehatUtilsExtension/Subscriber/BehatStepLoggerSubscriber.php)
