@@ -4,7 +4,7 @@
   "keywords": ["Behat3", "Utils", "Debug", "Logger"],
   "type": "library",
   "license": "MIT",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "authors": [
     {
       "name": "yoanm",
@@ -26,7 +26,8 @@
   "autoload-dev": {
     "psr-4": {
       "Technical\\": "tests/Technical",
-      "Functional\\": "tests/Functional"
+      "Functional\\": "tests/Functional",
+      "FunctionalTest\\Context\\": "app_test/features/bootstrap/"
     }
   },
   "require": {
