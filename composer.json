@@ -41,6 +41,19 @@
     "matthiasnoback/symfony-dependency-injection-test": "1.*"
   },
   "scripts": {
+    "build": [
+      "@composer install --prefer-dist --optimize-autoloader --ansi --verbose --no-suggest --no-interaction"
+    ],
+    "ci-build": [
+      "@composer install --prefer-dist --ansi --verbose --no-suggest --no-interaction"
+    ],
+    "travis-build": [
+      "@build-ci"
+    ],
+    "scrutinizer-build": [
+      "mkdir coverage",
+      "@build-ci"
+    ],
     "test": [
       "@t-test",
       "@f-test"
