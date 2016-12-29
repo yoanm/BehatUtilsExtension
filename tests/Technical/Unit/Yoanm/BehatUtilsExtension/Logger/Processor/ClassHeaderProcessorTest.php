@@ -1,7 +1,6 @@
 <?php
 namespace Technical\Unit\Yoanm\BehatUtilsExtension\Logger\Processor;
 
-use Monolog\Logger;
 use Yoanm\BehatUtilsExtension\Logger\Processor\ClassHeaderProcessor;
 
 class ClassHeaderProcessorTest extends \PHPUnit_Framework_TestCase
