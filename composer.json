@@ -50,7 +50,7 @@
       "@composer install --prefer-dist --ansi --no-suggest --no-interaction"
     ],
     "ci": [
-      "@ci-build",
+      "@build-ci",
       "@cs",
       "@test"
     ],
