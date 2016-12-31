@@ -19,7 +19,7 @@ build:
             - ~/.composer
     dependencies:
         override:
-            - composer install
+            - composer build-ci
 
     environment:
         mysql: false
@@ -29,12 +29,12 @@ build:
     tests:
         override:
             -
-                command: phpcs-run # @see https://scrutinizer-ci.com/docs/tools/php/code-sniffer/
+                command: composer cs
             -
-                command: mkdir coverage && composer run-script coverage-clover
+                command: composer coverage-clover
                 idle_timeout: 1200
                 coverage:
-                    file: 'coverage/clover.xml'
+                    file: 'build/coverage/clover.xml'
                     format: 'php-clover'
 
 tools:
@@ -55,7 +55,7 @@ tools:
             simplify_boolean_return:
                 enabled: true
     external_code_coverage: false
-    php_code_coverage:      false
+    php_code_coverage: false
     php_changetracking: true
     php_cpd: true
     php_cs_fixer: false
