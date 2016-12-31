@@ -1,4 +1,4 @@
 vendor
-composer.lock
 build
+composer.lock
 behat.log
