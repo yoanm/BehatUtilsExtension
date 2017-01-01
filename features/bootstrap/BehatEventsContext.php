@@ -204,8 +204,7 @@ class BehatEventsContext implements Context, BehatContextSubscriberInterface
                 );
             }
 
-            if (
-                $event instanceof AfterBackgroundTested
+            if ($event instanceof AfterBackgroundTested
                 || $event instanceof AfterScenarioTested
             ) {
                 \PHPUnit_Framework_Assert::assertFalse(
@@ -326,6 +325,5 @@ class BehatEventsContext implements Context, BehatContextSubscriberInterface
                 $type
             )
         );
-
     }
 }

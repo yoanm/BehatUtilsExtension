@@ -18,16 +18,15 @@ BehatUtilsExtension provide a set of utility for Behat 3.0+
 * [Default configuration reference](#default-configuration-reference)
 * [Tests](#tests)
 
-
-## How to use
-### Installation
+# Install
 ```bash
 composer require --dev yoanm/behat-utils-extension
 ```
 
+# How to use
 BehatUtilsExtension require [behat/behat](https://github.com/Behat/Behat) and [monolog/monolog](https://github.com/Seldaek/monolog)
 
-### Configuration
+## Configuration
 Add the following in your behat configuration file (usually `behat.yml`) :
 ```yaml
 default:
@@ -145,7 +144,7 @@ behatUtils.DEBUG: [BehatStepLoggerSubscriber] [STEP][IN] {"text":"STEP TEXT","li
 behatUtils.DEBUG: [BehatStepLoggerSubscriber] [STEP][OUT] {"text":"STEP TEXT","line":"STEP LINE"} []
 ```
 
-## Default configuration reference
+# Configuration reference
 ```yaml
 default:
     extensions:
@@ -157,5 +156,5 @@ default:
                 enabled: false
 ```
 
-## Contributing
+# Contributing
 See [contributing note](./CONTRIBUTING.md)
