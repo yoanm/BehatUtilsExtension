@@ -19,6 +19,7 @@ build:
             - ~/.composer
     dependencies:
         override:
+            - composer global require hirak/prestissimo
             - composer build-ci
 
     environment:
@@ -28,8 +29,7 @@ build:
         redis: false
     tests:
         override:
-            -
-                command: composer cs
+            - composer cs
             -
                 command: composer coverage-clover
                 idle_timeout: 1200
