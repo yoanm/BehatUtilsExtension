@@ -19,6 +19,7 @@ build:
             - ~/.composer
     dependencies:
         override:
+            - composer global require hirak/prestissimo
             - composer build-ci
 
     environment:
