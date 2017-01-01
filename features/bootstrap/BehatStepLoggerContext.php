@@ -188,8 +188,7 @@ class BehatStepLoggerContext implements Context, BehatContextSubscriberInterface
                 );
             }
 
-            if (
-                $event instanceof AfterBackgroundTested
+            if ($event instanceof AfterBackgroundTested
                 || $event instanceof AfterScenarioTested
             ) {
                 \PHPUnit_Framework_Assert::assertFalse(
@@ -279,7 +278,7 @@ class BehatStepLoggerContext implements Context, BehatContextSubscriberInterface
                 '/^.*behatUtils\.DEBUG: \[BehatStepLoggerSubscriber\] \[%s\]\[%s\]%s.*$/m',
                 $type,
                 $isStart ? BehatStepLoggerSubscriber::HEADER_ACTION_IN : BehatStepLoggerSubscriber::HEADER_ACTION_OUT,
-                preg_quote($extra,'/')
+                preg_quote($extra, '/')
             ),
             file_get_contents($this->logFile),
             $message
