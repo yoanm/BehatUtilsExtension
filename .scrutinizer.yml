@@ -28,8 +28,7 @@ build:
         redis: false
     tests:
         override:
-            -
-                command: composer cs
+            - composer cs
             -
                 command: composer coverage-clover
                 idle_timeout: 1200

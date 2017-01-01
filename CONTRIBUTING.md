@@ -12,7 +12,7 @@ composer ci
 ```
 
  * Make your changes (Add/Update tests according to your changes).
- * Make tests are still green:
+ * Make sure tests are still green:
 ```bash
 composer cs
 composer test

@@ -14,7 +14,7 @@ install:
   - composer build-ci
 
 script:
-  - composer run-script test
+  - composer test
 
 cache:
   files:

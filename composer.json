@@ -60,10 +60,13 @@
     ],
     "f-test": [
       "./vendor/bin/phpunit --testsuite functional",
-      "./vendor/bin/behat --no-snippets --strict --colors --format progress"
+      "@behat"
     ],
     "t-test": [
       "./vendor/bin/phpunit --testsuite technical"
+    ],
+    "behat": [
+      "./vendor/bin/behat --no-snippets --colors --format progress"
     ],
     "cs": [
       "./vendor/bin/phpcs"

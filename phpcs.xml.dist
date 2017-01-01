@@ -2,6 +2,7 @@
 <ruleset name="Behat Utils Extension">
     <file>src</file>
     <file>tests</file>
+    <file>features/bootstrap</file>
 
     <arg value="p"/>
     <arg name="colors"/>
