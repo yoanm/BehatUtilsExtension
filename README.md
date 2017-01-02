@@ -156,5 +156,8 @@ default:
                 enabled: false
 ```
 
+# Tests
+This repository follow a [custom test strategie](https://gist.github.com/yoanm/3944890d0adda5fc7e0c306a1870727d#file-tests-md)
+
 # Contributing
 See [contributing note](./CONTRIBUTING.md)
