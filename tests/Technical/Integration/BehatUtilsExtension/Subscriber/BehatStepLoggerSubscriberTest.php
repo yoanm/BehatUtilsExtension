@@ -98,6 +98,16 @@ class BehatStepLoggerSubscriberTest extends \PHPUnit_Framework_TestCase
         $this->subscriber->logEvent($event);
     }
 
+    public function testWithUnexpectedEvent()
+    {
+        $event = $this->prophesize(GherkinNodeTested::class)->reveal();
+        $this->setExpectedException(
+            \InvalidArgumentException::class,
+            sprintf('"%s" not handled !', get_class($event))
+        );
+        $this->subscriber->logEvent($event);
+    }
+
     /**
      * @return array
      */
