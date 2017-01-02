@@ -10,6 +10,9 @@ sudo: false
 matrix:
   fast_finish: true
 
+before_install:
+  - composer global require hirak/prestissimo
+
 install:
   - composer build-ci
 
@@ -17,8 +20,5 @@ script:
   - composer test
 
 cache:
-  files:
-    - composer.lock
   directories:
     - $HOME/.composer
-    - vendor
