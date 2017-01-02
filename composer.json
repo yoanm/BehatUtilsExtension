@@ -2,7 +2,7 @@
   "name": "yoanm/behat-utils-extension",
   "type": "library",
   "license": "MIT",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description":  "A set of utility for Behat3",
   "keywords": ["Behat3", "Utils", "Debug", "Logger"],
   "authors": [
@@ -73,7 +73,7 @@
       "./vendor/bin/phpcs"
     ],
     "coverage": [
-      "./vendor/bin/phpunit --coverage-html coverage"
+      "./vendor/bin/phpunit --coverage-html build/coverage"
     ],
     "coverage-clover": [
       "./vendor/bin/phpunit --coverage-clover build/coverage/clover.xml"
