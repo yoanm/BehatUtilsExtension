@@ -1,5 +1,5 @@
 <?php
-namespace Technical\Integration\Yoanm\BehatUtilsExtension\ServiceContainer\Configuration;
+namespace Functional\Yoanm\BehatUtilsExtension\ServiceContainer\Configuration;
 
 use Yoanm\BehatUtilsExtension\ServiceContainer\Configuration\EventSubscriberConfiguration;
 

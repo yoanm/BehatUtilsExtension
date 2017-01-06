@@ -1,5 +1,5 @@
 <?php
-namespace Technical\Integration\Yoanm\BehatUtilsExtension\ServiceContainer\Configuration;
+namespace Functional\Yoanm\BehatUtilsExtension\ServiceContainer\Configuration;
 
 use Monolog\Logger;
 use Yoanm\BehatUtilsExtension\ServiceContainer\Configuration\LoggerConfiguration;
