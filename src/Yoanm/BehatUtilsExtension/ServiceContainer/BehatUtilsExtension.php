@@ -4,9 +4,11 @@ namespace Yoanm\BehatUtilsExtension\ServiceContainer;
 use Behat\Testwork\ServiceContainer\Extension;
 use Behat\Testwork\ServiceContainer\ExtensionManager;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Yoanm\BehatUtilsExtension\ServiceContainer\Configuration\EventSubscriberConfiguration;
 use Yoanm\BehatUtilsExtension\ServiceContainer\Configuration\LoggerConfiguration;
 use Yoanm\BehatUtilsExtension\ServiceContainer\Configuration\StepLoggerConfiguration;
 
@@ -39,6 +41,7 @@ class BehatUtilsExtension implements Extension
     {
         $builder->append((new LoggerConfiguration())->getConfigNode());
         $builder->append((new StepLoggerConfiguration())->getConfigNode());
+        $builder->append((new EventSubscriberConfiguration())->getConfigNode());
     }
 
     /**
@@ -54,7 +57,10 @@ class BehatUtilsExtension implements Extension
         );
 
         $loader->load('logger.xml');
-        $loader->load('initializer.xml');
+
+        if (true === $config['event_subscriber']['enabled']) {
+            $loader->load('event_subscriber.xml');
+        }
 
         if (true === $config['step_logger']['enabled']) {
             $loader->load('behat_step_logger.xml');

@@ -74,9 +74,17 @@ class FeatureContext implements Context, LoggerAwareInterface
 ```
 
 ### Behat event subscription
-See [`BehatContextSubscriberInterface`](src/Yoanm/BehatUtilsExtension/Context/BehatContextSubscriberInterface.php)
+*See [`BehatContextSubscriberInterface`](src/Yoanm/BehatUtilsExtension/Context/BehatContextSubscriberInterface.php)*
 
-Implements this interface and your context will be passed to Behat dispatcher in order to receive behat events
+Enable initializer and implements `BehatContextSubscriberInterface`, then your context will be passed to Behat dispatcher in order to receive behat events
+
+#### Enable context initializer
+```yaml
+default:
+    extensions:
+        Yoanm\BehatUtilsExtension:
+            event_subscriber: true
+```
 
 #### Example
 ```php
@@ -117,13 +125,20 @@ class FeatureContext implements Context, BehatContextSubscriberInterface
 ```
 
 ### Step logger
-**Only in case where `step_logger.enabled` is set to true** (see [default configuration reference](#default-configuration-reference) below).
-
-See [`BehatStepLoggerSubscriber`](src/Yoanm/BehatUtilsExtension/Subscriber/BehatStepLoggerSubscriber.php)
+*See [`BehatStepLoggerSubscriber`](src/Yoanm/BehatUtilsExtension/Subscriber/BehatStepLoggerSubscriber.php)*
 
 If enabled, will log each behat feature/background/outline/example/step start and end. Usefull to understand what happens behing the scene if you have a non understandable error in you features.
 
-Could be use with [Logger](#logger) to easily spot an issue.
+Could be use with [Logger](#logger) to easily spot an issue in context custom steps.
+
+
+#### Enable step listener
+```yaml
+default:
+    extensions:
+        Yoanm\BehatUtilsExtension:
+            step_logger: true
+```
 
 #### Output example
 The following will be appended in the configured log file (see [default configuration reference](#default-configuration-reference) below).
@@ -152,12 +167,12 @@ default:
             logger:
                 path: behat.log
                 level: INFO
-            step_logger:
-                enabled: false
+            event_subscriber: false
+            step_logger: false
 ```
 
 # Tests
-This repository follow a [custom test strategy](https://gist.github.com/yoanm/3944890d0adda5fc7e0c306a1870727d#file-tests-md)
+This repository follow a [custom test strategy](https://github.com/yoanm/Readme/blob/master/Tests.md)
 
 # Contributing
 See [contributing note](./CONTRIBUTING.md)
