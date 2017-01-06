@@ -5,6 +5,7 @@ use Prophecy\Argument;
 use Prophecy\Argument\Token;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\NodeInterface;
+use Symfony\Component\Config\Definition\Processor;
 use Yoanm\BehatUtilsExtension\ServiceContainer\BehatUtilsExtension;
 
 class BehatUtilsExtensionTest extends ServiceContainerTestCase
@@ -16,7 +17,9 @@ class BehatUtilsExtensionTest extends ServiceContainerTestCase
 
     public function testModulesConfigAppended()
     {
-        $config = $this->normalizeConfig();
+        $builder = new ArrayNodeDefinition('test');
+        $this->extension->configure($builder);
+        $config = (new Processor())->process($builder->getNode(true), []);
 
         $this->assertArrayHasKey('step_logger', $config);
         $this->assertArrayHasKey('event_subscriber', $config);
@@ -35,14 +38,18 @@ class BehatUtilsExtensionTest extends ServiceContainerTestCase
 
     public function testConfigurationBindedToContainerParameter()
     {
-        // Don't use default configuration as it can change
+        // Don't use default configuration to be secure assertions based on this array
         $config = [
             'logger' => [
                 'path' => 'my_path',
                 'level' => 'my_level',
             ],
-            'event_subscriber' => true,
-            'step_logger' => true,
+            'event_subscriber' => [
+                'enabled' => true,
+            ],
+            'step_logger' => [
+                'enabled' => true,
+            ],
         ];
         $container = $this->loadContainer($config);
 
@@ -55,11 +62,11 @@ class BehatUtilsExtensionTest extends ServiceContainerTestCase
             $container->getParameter('behat_utils_extension.logger.level')
         );
         $this->assertSame(
-            $config['event_subscriber'],
+            $config['event_subscriber']['enabled'],
             $container->getParameter('behat_utils_extension.event_subscriber.enabled')
         );
         $this->assertSame(
-            $config['step_logger'],
+            $config['step_logger']['enabled'],
             $container->getParameter('behat_utils_extension.step_logger.enabled')
         );
     }
@@ -83,7 +90,7 @@ class BehatUtilsExtensionTest extends ServiceContainerTestCase
      */
     public function testBehatSubscriberLoadedIfEnabled()
     {
-        $container = $this->loadContainer(['event_subscriber' => true]);
+        $container = $this->loadContainer(['event_subscriber' => ['enabled' => true]]);
 
         // Assert BehatContextSubscriberInitializer is present (means 'event_subscriber.xml' has been loaded)
         $this->assertContains('behat_utils_extension.initializer.behat_subscriber', $container->getServiceIds());
@@ -91,7 +98,7 @@ class BehatUtilsExtensionTest extends ServiceContainerTestCase
 
     public function testStepLoggerLoadedIfEnabled()
     {
-        $container = $this->loadContainer(['step_logger' => true]);
+        $container = $this->loadContainer(['step_logger' => ['enabled' => true]]);
 
         // Assert BehatStepLoggerSubscriber is present (means 'behat_step_logger.xml' has been loaded)
         $this->assertContains('behat_utils_extension.subscriber.behat_step', $container->getServiceIds());
@@ -104,9 +111,6 @@ class BehatUtilsExtensionTest extends ServiceContainerTestCase
     {
         parent::setUp();
         $this->extension = new BehatUtilsExtension();
-        $builder = new ArrayNodeDefinition('test');
-        $this->extension->configure($builder);
-        $this->configurationNode = $builder->getNode(true);
     }
 
     /**
@@ -134,5 +138,24 @@ class BehatUtilsExtensionTest extends ServiceContainerTestCase
         $this->registerService('event_dispatcher', \stdClass::class);
 
         return parent::loadContainer($config);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getDefaultConfig()
+    {
+        return [
+            'logger' => [
+                'path' => 'path',
+                'level' => 'level',
+            ],
+            'event_subscriber' => [
+                'enabled' => false,
+            ],
+            'step_logger' => [
+                'enabled' => false,
+            ],
+        ];
     }
 }

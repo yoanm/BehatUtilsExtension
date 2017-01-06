@@ -3,8 +3,6 @@ namespace Technical\Integration\Yoanm\BehatUtilsExtension\ServiceContainer;
 
 use Behat\Testwork\ServiceContainer\Extension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractContainerBuilderTestCase;
-use Symfony\Component\Config\Definition\NodeInterface;
-use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class ServiceContainerTestCase extends AbstractContainerBuilderTestCase
@@ -18,11 +16,11 @@ class ServiceContainerTestCase extends AbstractContainerBuilderTestCase
     }
 
     /**
-     * @return NodeInterface
+     * @return array
      */
-    protected function getConfigurationNode()
+    protected function getDefaultConfig()
     {
-        throw new \Exception('You must override getConfigurationNode method to return a configuration node interface');
+        throw new \Exception('You must override getDefaultConfig method to return the default config tree');
     }
 
     /**
@@ -49,6 +47,9 @@ class ServiceContainerTestCase extends AbstractContainerBuilderTestCase
      */
     protected function normalizeConfig(array $config = [])
     {
-        return (new Processor())->process($this->getConfigurationNode(), [$config]);
+        return array_replace_recursive(
+            $this->getDefaultConfig(),
+            $config
+        );
     }
 }
