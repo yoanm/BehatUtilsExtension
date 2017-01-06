@@ -1,16 +1,16 @@
 <?php
-namespace Functional\Yoanm\BehatUtilsExtension\ServiceContainer\Configuration;
+namespace Technical\Integration\Yoanm\BehatUtilsExtension\ServiceContainer\Configuration;
 
-use Yoanm\BehatUtilsExtension\ServiceContainer\Configuration\StepLoggerConfiguration;
+use Yoanm\BehatUtilsExtension\ServiceContainer\Configuration\EventSubscriberConfiguration;
 
-class StepLoggerConfigurationTest extends ConfigurationTestCase
+class EventSubscriberConfigurationTest extends ConfigurationTestCase
 {
     /**
      * {@inheritdoc}
      */
     public function getConfiguration()
     {
-        return new StepLoggerConfiguration();
+        return new EventSubscriberConfiguration();
     }
 
     public function testDefaultConfiguration()

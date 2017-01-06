@@ -1,37 +1,25 @@
 <?php
 namespace Technical\Integration\Yoanm\BehatUtilsExtension\ServiceContainer;
 
-use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractContainerBuilderTestCase;
 use Prophecy\Argument;
 use Prophecy\Argument\Token;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
-use Symfony\Component\Config\Definition\Processor;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\Config\Definition\NodeInterface;
 use Yoanm\BehatUtilsExtension\ServiceContainer\BehatUtilsExtension;
 
-class BehatUtilsExtensionTest extends AbstractContainerBuilderTestCase
+class BehatUtilsExtensionTest extends ServiceContainerTestCase
 {
     /** @var BehatUtilsExtension */
     private $extension;
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-        $this->extension = new BehatUtilsExtension();
-    }
+    /** @var NodeInterface */
+    private $configurationNode;
 
     public function testModulesConfigAppended()
     {
-        $builder = new ArrayNodeDefinition('test');
-
-        $this->extension->configure($builder);
-
-        $config = (new Processor())->process($builder->getNode(true), []);
+        $config = $this->normalizeConfig();
 
         $this->assertArrayHasKey('step_logger', $config);
+        $this->assertArrayHasKey('event_subscriber', $config);
         $this->assertArrayHasKey('logger', $config);
     }
 
@@ -53,9 +41,8 @@ class BehatUtilsExtensionTest extends AbstractContainerBuilderTestCase
                 'path' => 'my_path',
                 'level' => 'my_level',
             ],
-            'step_logger' => [
-                'enabled' => true,
-            ],
+            'event_subscriber' => true,
+            'step_logger' => true,
         ];
         $container = $this->loadContainer($config);
 
@@ -68,7 +55,11 @@ class BehatUtilsExtensionTest extends AbstractContainerBuilderTestCase
             $container->getParameter('behat_utils_extension.logger.level')
         );
         $this->assertSame(
-            $config['step_logger']['enabled'],
+            $config['event_subscriber'],
+            $container->getParameter('behat_utils_extension.event_subscriber.enabled')
+        );
+        $this->assertSame(
+            $config['step_logger'],
             $container->getParameter('behat_utils_extension.step_logger.enabled')
         );
     }
@@ -81,46 +72,67 @@ class BehatUtilsExtensionTest extends AbstractContainerBuilderTestCase
 
         // Assert Logger is present (means 'logger.xml' has been loaded)
         $this->assertContains('behat_utils_extension.logger', $serviceList);
-        // Assert LoggerAwareInitializer is present (means 'initializer.xml' has been loaded)
-        $this->assertContains('behat_utils_extension.initializer.behat_subscriber', $serviceList);
+        // Assert BehatContextSubscriberInitializer is not present (means 'event_subscriber.xml' has not been loaded)
+        $this->assertNotContains('behat_utils_extension.initializer.behat_subscriber', $serviceList);
         // Assert BehatStepLoggerSubscriber is not present (means 'behat_step_logger.xml' has not been loaded)
         $this->assertNotContains('behat_utils_extension.subscriber.behat_step', $serviceList);
     }
 
+    /**
+     * @group yo
+     */
+    public function testBehatSubscriberLoadedIfEnabled()
+    {
+        $container = $this->loadContainer(['event_subscriber' => true]);
+
+        // Assert BehatContextSubscriberInitializer is present (means 'event_subscriber.xml' has been loaded)
+        $this->assertContains('behat_utils_extension.initializer.behat_subscriber', $container->getServiceIds());
+    }
+
     public function testStepLoggerLoadedIfEnabled()
     {
-        $container = $this->loadContainer(['step_logger' => ['enabled' => true]]);
+        $container = $this->loadContainer(['step_logger' => true]);
 
         // Assert BehatStepLoggerSubscriber is present (means 'behat_step_logger.xml' has been loaded)
         $this->assertContains('behat_utils_extension.subscriber.behat_step', $container->getServiceIds());
     }
 
     /**
-     * @param array $config Extension config
-     *
-     * @return ContainerBuilder
+     * {@inheritdoc}
      */
-    protected function loadContainer(array $config = null)
+    protected function setUp()
     {
-        if (null == $config) {
-            $config = [
-                'logger' => [
-                    'path' => 'my_path',
-                    'level' => 'my_level',
-                ],
-                'step_logger' => [
-                    'enabled' => false,
-                ],
-            ];
-        }
+        parent::setUp();
+        $this->extension = new BehatUtilsExtension();
+        $builder = new ArrayNodeDefinition('test');
+        $this->extension->configure($builder);
+        $this->configurationNode = $builder->getNode(true);
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    protected function getExtension()
+    {
+        return $this->extension;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getConfigurationNode()
+    {
+        return $this->configurationNode;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function loadContainer(array $config = [])
+    {
         // Fake event_dispatcher
-        $this->registerService('event_dispatcher', '\stdClass');
+        $this->registerService('event_dispatcher', \stdClass::class);
 
-        $this->extension->load($this->container, $config);
-
-        $this->compile();
-
-        return $this->container;
+        return parent::loadContainer($config);
     }
 }
