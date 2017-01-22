@@ -38,7 +38,7 @@ class BehatUtilsExtensionTest extends ServiceContainerTestCase
 
     public function testConfigurationBindedToContainerParameter()
     {
-        // Don't use default configuration to be secure assertions based on this array
+        // Don't use default configuration make assertions based on this array
         $config = [
             'logger' => [
                 'path' => 'my_path',
