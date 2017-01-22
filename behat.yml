@@ -18,4 +18,5 @@ default:
     Yoanm\BehatUtilsExtension:
         logger:
             level: DEBUG
+        event_subscriber: true
         step_logger: true

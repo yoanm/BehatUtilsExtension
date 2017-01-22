@@ -4,14 +4,11 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
+        <!-- Context initializer -->
         <service id="behat_utils_extension.initializer.behat_subscriber" class="Yoanm\BehatUtilsExtension\Context\Initializer\BehatContextSubscriberInitializer">
             <argument type="service" id="event_dispatcher" />
             <tag name="context.initializer" />
             <tag name="event_dispatcher.subscriber" />
-        </service>
-        <service id="behat_utils_extension.initializer.logger_aware" class="Yoanm\BehatUtilsExtension\Context\Initializer\LoggerAwareInitializer">
-            <argument type="service" id="behat_utils_extension.logger" />
-            <tag name="context.initializer" />
         </service>
     </services>
 </container>
