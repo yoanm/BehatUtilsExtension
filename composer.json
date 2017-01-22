@@ -73,10 +73,10 @@
       "./vendor/bin/phpcs"
     ],
     "coverage": [
-      "./vendor/bin/phpunit --testsuite technical --coverage-html build/coverage"
+      "./vendor/bin/phpunit --coverage-html build/coverage"
     ],
     "coverage-clover": [
-      "./vendor/bin/phpunit --testsuite technical --coverage-clover build/coverage/clover.xml"
+      "./vendor/bin/phpunit --coverage-clover build/coverage/clover.xml"
     ]
   }
 }
