@@ -9,7 +9,7 @@ class ConfigurationTestCase extends \PHPUnit_Framework_TestCase
     /**
      * @return ConfigurationInterface
      */
-    public function getConfiguration()
+    protected function getConfiguration()
     {
         throw new \Exception('You must override getConfiguration method to return your configuration class');
     }
